@@ -39,6 +39,7 @@
 						<li>Code Monkey</li>
 						<li>Healthy interest into methodologies for improving my skillz</li>
 						<li>Not a methodology "Nazi"</li>
+						<li class="fragment">Also, a Unicorn! (but don't tell anyone)</li>
 					</ul>
 				</section>
 				<section data-background="rgba(0, 100, 100, 0.2)">
@@ -200,7 +201,7 @@
 					<ul class="fragment">
 						<li>When you are less effective using it (while learning)</li>
 						<li>New framework / environment / tools...</li>
-						<li>When "playing around with an idea"</li>
+						<li>When "playing around with code"</li>
 					</ul>
 				</section>
 				<section>
@@ -232,8 +233,8 @@
 						<ul>
 							<li><span class="white">As a</span> user, <span class="white">I will</span> be able to choose to stay signed in when logging in, <span class="white">so that</span> I wont have to type my password next time</li>
 							<li class="fragment"><span class="white">As an</span> API client, <span class="white">I will</span> be able to update my e-mail address</li>
-							<li class="fragment"><span class="white">Given</span> a dashboard user, <span class="white">When</span> he presses the clear filters button, <span class="white">Then</span> filters are reset</li>
-							<li class="fragment"><span class="white">Given</span> a dashboard user, <span class="white">When</span> he presses the clear filters button, <span class="white">Then</span> content is reloaded</li>
+							<li class="fragment"><span class="white">Given</span> a dashboard user, <span class="white">When</span> some filters were selected, and the clear filters button is pressed, <span class="white">Then</span> filters are reset</li>
+							<li class="fragment"><span class="white">Given</span> a dashboard user, <span class="white">When</span> some filters were selected, and the clear filters button is pressed, <span class="white">Then</span> content is reloaded</li>
 							<li class="fragment"><span class="white">As a</span> library user, <span class="white">I will</span> be able to receive the list of files given a directory</li>
 							<li class="fragment"><span class="white">As a</span> library user, <span class="white">I will</span> get an exception when I provide a path which is not a folder</li>
 						</ul>
@@ -260,7 +261,7 @@ var Sorter = {
 }
 
 //=== SorterSpec.js
-var Sorter = require("Sorter")
+var Sorter = require("./Sorter")
 
 // As a code user, I will have a generic Sorting API
 describe("Sorting"){
@@ -295,7 +296,7 @@ var Sorter = {
 }
 
 //=== SorterSpec.js
-var Sorter = require("Sorter")
+var Sorter = require("./Sorter")
 
 // As a code user, I will have a generic Sorting API
 describe("Sorting"){
@@ -323,11 +324,42 @@ describe("Sorting"){
 				</section>
 
 				<section data-background="rgba(0, 100, 100, 0.2)">
-					<h2>Other Useful Tools</h2>
-					<ul>
-						<li class="fragment">Mocking</li>
-						<li class="fragment">Dependency Injection</li>
-					</ul>
+					<section>
+						<h1>Other Useful Tools</h1>
+					</section>
+					<section>
+						<h2>Mocking</h2>
+						<div class="javascript">
+							<pre>
+								<code>
+var PsuedoMocker = require("PsuedoMocker")
+var Networking = require("./NetworkingSorter")
+var Scraper = require("./Scraper")
+
+// As a code user, I will have a generic Sorting API
+describe("Scraper"){
+	it("fetches something from the web"){
+		var someContent = "<html><body><div class="something">aaaa</div></body></html>"
+		var mockedNetwork = Mocker.mock(Networking);
+		mockedNetwork.overide("get", function(){
+			return someContent
+		})
+		var scraper = new Scraper(mockedNetwork)
+		expect( scraper.scrapeByClass("http://somewhere.com","something") ).toEqual("aaaa");
+	}
+}
+								</code>
+							</pre>
+						</div>
+					</section>
+					<section>
+						<h2>Dependency Injection</h2>
+						<ul>
+							<li>Factories (using 3rd parties to override what is provided in run time)</li>
+							<li>Mix-ins (for languages that support it - AKA "Cake Pattern")</li>
+							<li>Constructor DI</li>
+						</ul>
+					</section>
 				</section>
 				<section>
 					<h2>Other resources</h2>
@@ -348,24 +380,6 @@ describe("Sorting"){
 			</div>
 
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<script src="./lib/js/head.min.js"></script>
 		<script src="./js/reveal.min.js"></script>
