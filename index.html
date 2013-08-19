@@ -3,51 +3,25 @@
 
 	<head>
 		<meta charset="utf-8">
+		<style type="text/css">
+			.white {
+				color: white;
+			}
+			.left {
+				float:left;
+			}
+		</style>
 
-		<title>reveal.js - Barebones</title>
+		<title>BDD Talk 2013</title>
 
 		<link rel="stylesheet" href="./css/reveal.min.css">
-		<link rel="stylesheet" href="./css/theme/serif.css" id="theme">
+		<link rel="stylesheet" href="./css/theme/moon.css" id="theme">
+
+		<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+		<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 	</head>
 
 	<body>
-	<!--
-			mocking
-			dependency injection
-			user stories
-		design
-		TDD
-			What kind of systems can you write using BDD?
-		specification (requirements) / regression / granularity
-			coverage / behavior
-		implementation coverage (TDD) vs feature coverage (BDD)
-		Dsign = how / User Storeis = why
-		
-		domain language created before hand
-		need domain language to describe valuable scenarios
-		vs calling method with parameter / implementation specific language
-		
-
-			language that drives value out of sentences vs irrelevant functionallity 
-
-			language core words - example user stories
-
-			deterministic system setup / promotes encapsulation / 		
-
-
-		example : sorting (implementaiton vs behavior)
-
-		developer range - strong teams vs 
-
-		audiance - stake holders, users, 
-
-			continuos integration / deployment / sprints
-
-
-
-			static vs dynamic typing - an example of expressive power
-	-->
-
 
 		<div class="reveal">
 			<div class="slides">
@@ -56,85 +30,342 @@
 					<br/>
 					<p>Driving development with BDD</p>
 					<p>Me : Roman Landenband</p>
-					<p>BDD entusiast, a craftsman</p>
+					<p>BDD enthusiast, a craftsman</p>
 				</section>
 				<section data-background="rgba(0, 100, 100, 0.2)">
-					<h2>Why Should I Care About Testing?</h2>
+					<h2>Who am I</h2>
+					<img src="./img/me.jpg"/>
+					<ul>
+						<li>Code Monkey</li>
+						<li>Healthy interest into methodologies for improving my skillz</li>
+						<li>Not a methodology "Nazi"</li>
+					</ul>
+				</section>
+				<section data-background="rgba(0, 100, 100, 0.2)">
+					<h2>Who Are You?</h2>
 					<br/>
 					<ul>
-						<li>Regression</li>
-						<li>Refactoring</li>
-						<li>Updates / Upgrades</li>
-						<li>Monitoring</li>
-						<li>CI/CD</li>
-						<li>Bug reproduction environment</li>
-						<li>22/25 trending Github projects have tests! (https://github.com/trending)</li>
+						<li>Testers?</li>
+						<li>Doing TDD/BDD?</li>
 					</ul>
 				</section>
 				<section data-background="rgba(0, 100, 100, 0.2)">
-					<h2>Why xDD</h2>
+					<section>
+						<h2>Fellow Engineers..</h2>
+						<div><img src="./img/danger_bridge.jpg"/></div>
+						<div><small>Attribution: <a href="http://commons.wikimedia.org/wiki/File:RIAN_archive_879_Combat_engineers_building_a_bridge.jpg">RIA Novosti archive, image #879 / Knorring / CC-BY-SA 3.0</a> </small></div>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Testing...</h2>
+						<div><img src="./img/testing_building_barebone.jpg"/></div>
+						<div><small>source: <a href="http://en.wikiversity.org/wiki/File:Snapshot_of_base_isolation_effect.jpg">wikipedia</a> </small></div>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Testing...</h2>
+						<div><img src="./img/engine_testing_tunnel.jpg"/></div>
+						<div><small>source: <a href="http://commons.wikimedia.org/wiki/File:F100_F-15_engine.JPG">wikipedia</a> </small></div>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Testing...</h2>
+						<div><img src="./img/engine_test.jpg"/></div>
+						<div><small>source: <a href="http://commons.wikimedia.org/wiki/File:Pratt_%26_Whitney_Advanced_Ducted_Propulsor_engine_test.jpg">wikipedia</a> </small></div>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Testing...</h2>
+						<div><img src="./img/testing_car.jpg"/></div>
+						<div><small>source: <a href="http://www.flickr.com/photos/argonne/7896180472/sizes/z/in/photostream/">flickr</a> </small></div>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Please Test And Report!</h2>
+						<div><img src="./img/mj_test.jpg"/></div>
+						<div><small>source: <a href="http://www.flickr.com/photos/dutchamsterdam/3042692817/sizes/z/in/photostream/">flickr</a> </small></div>
+					</section>
+				</section>
+				<section data-background="rgba(0, 100, 100, 0.2)">
+					<section>
+						<h1>Why Should You Care About Testing?</h1>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Famous "last" Quotes</h2>
+						<BR/>
+						<ul>
+							<li class="fragment">This little change will surely not break anything..</li>
+							<li class="fragment">Changes? umm.. there's cake in the kitchen *TAKE MINE*</li>
+							<li class="fragment">I will just return null..</li>
+							<li class="fragment">I am the only one who uses this API.. right?</li>
+							<li class="fragment">Done creating singleton ConfigToolManagerUtility, now I will just add some notes in the header of my UserBeanFactory, others will surely read it..</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Buzz Words Corner</h2>
+						<BR/>
+						<ul>
+							<li class="fragment">Enables CI/CD</li>
+							<li class="fragment">Protects against regression</li>
+							<li class="fragment">Facilitates refactoring</li>
+							<li class="fragment">Asserts functionality when updating / upgrading 3rd parties</li>
+							<li class="fragment">Run subset of tests on live environment, for monitoring</li>
+							<li class="fragment">Bug reproduction environment</li>
+						</ul>
+					</section>
+				</section>
+				<section data-background="rgba(0, 100, 100, 0.2)">
+					<h2>Other Engineers Are Testing... Are You?</h2>
+				</section>
+				<section data-background="rgba(0, 100, 100, 0.2)">
+					<h2>Types of Automated Tests</h2>
 					<ul>
-						<li>Developer, who wrote the code, knows best what it should be doing</li>
-						<li>Better fit for Agile</li>
-						<li>Encourages: encapsulation, Deterministic system setup / teardown</li>
-						<li>Self documenting</li>
+						<div class="fragment">
+							<li>Unit Tests</li>
+							<ul>
+								<li>test coverage</li>
+								<li>implementation details</li>
+							</ul>
+						</div>
+						<div class="fragment">
+							<li>Acceptance / System Tests</li>
+							<ul>
+								<li>functionality of the entire system</li>
+							</ul>
+						</div>
+						<div class="fragment">
+							<li>Performance Tests</li>
+							<ul>
+								<li>well.. performance!</li>
+							</ul>
+						</div>
 					</ul>
+				</section>
+				<section data-background="rgba(0, 100, 100, 0.2)">
+					<h2>OK.. So Tests Are Good, But Why "Test First"?</h2>
+					<BR/>
+					<ul>
+						<li class="fragment">Developer, who wrote the code, knows best how / where it may break</li>
+						<div class="fragment">
+							<li>Encourages (ahem forces)</li>
+							<ul>
+								<li>encapsulation</li>
+								<li>deterministic system setup / teardown</li>
+								<li>self documenting</li>
+								<li>good public APIs</li>
+							</ul>
+						</div>
+					</ul>
+				</section>
+				<section>
+					<h1><b>TDD encourages simple designs and inspires confidence</b></h1>
+					<h2><i>Kent Beck</i></h2>
 				</section>
 				<section data-background="rgba(0, 100, 100, 0.2)">
 					<h2>Why BDD</h2>
+					<BR/>
 					<ul>
-						<li>"Value" driven</li>
+						<li>Value / feature driven</li>
+						<li>Better fit for Agile</li>
 						<li>Focus on <b>behavior</b>, not code coverage</li>
-						<li>Common (domain specific) language for communicating</li>
+						<li>Encourages common ("domain specific") language for communication</li>
 						<li>User stories are aligned with delivered features</li>
 					</ul>
 				</section>
 				<section data-background="rgba(0, 100, 100, 0.2)">
-					<h2>Let's see some examples...</h2>
-					<p>(press down....)</p>
-
-					<section>
-
-					</section>
-
+					<h2>Start Using It Today</h2>
+					<ul>
+						<li class="fragment">Collect requirements</li>
+						<li class="fragment">Formulate user stories / scenarios</li>
+						<li class="fragment">Dumb down the user stories to be as small as possible (max 1 sprint)</li>
+						<li class="fragment">Design: HLD, wire frame etc..</li>
+						<li class="fragment">Code up the test according to the story (possibly dumb down the story some more)</li>
+						<li class="fragment">Fail the test.. implement the functionality.. make it pass..</li>
+						<li class="fragment">Refactor and abstract code/tests, build smart test "helpers" to simplify test setup</li>
+					</ul>
+				</section>
+				<section>
+					<h2>In Which Project Would I Use BDD?</h2>
+					<p class="fragment">Everywhere really!</p>
+					<ul class="fragment">
+						<li>Frontend</li>
+						<li>Backend</li>
+						<li>Mobile</li>
+						<li>Algorithms</li>
+					</ul>
+				</section>
+				<section>
+					<h2>When Is BDD Less Effective</h2>
+					<ul class="fragment">
+						<li>When you are less effective using it (while learning)</li>
+						<li>New framework / environment / tools...</li>
+						<li>When "playing around with an idea"</li>
+					</ul>
+				</section>
+				<section>
+					<h3>
+						"Domain Specific Language" is formulated between "stake holders". Optimally one would like to preserve the nuances of said language while designing APIs (be it public or implementation specific code).
+					</h3>
+				</section>
+				<section>
+					<h3>
+						The key to BDD is explicitly stating what you want to get from the code <span style="color: white">your about to write</span>.
+						If your already doing Agile, and your working with "stake holders" to create user stories, 
+						it should be easy to see how these translate into actual code
+					</h3>
 				</section>
 				<section data-background="rgba(0, 100, 100, 0.2)">
 					<section>
-						<h2>What Do You Get?</h2>
-						<br/>
-						<p><b>User Stories</b></p>
-						<p>As a [role], I want [Requirement / Feature], So that [Justification/Reason]</p>
-						<br/>
+						<h2>User Stories</h2>
+						<BR/>
+						<p>Two common formats:</p>
 						<ul>
-							<li>As a user, I want a logout button</li>
-							<li>As an API consumer, I want to get user details</li>
-							<li>As app server developer, I want the app logs to be collected and analyzed every hour, so that we have hourly SLA compliency monitoring</li>
+							<li><span class="white">As a</span>... <span class="white">I will</span>... <span class="white">So that</span>...</li>
+							<li><span class="white">Given</span>... <span class="white">When</span>... <span class="white">Then</span>...</li>
 						</ul>
+						<BR/>
+						<BR/>
+						<p>(press down....)</p>
 					</section>
 					<section>
-						<h2>What Do You Get?</h2>
-						<p>aaaa</p>
+						<ul>
+							<li><span class="white">As a</span> user, <span class="white">I will</span> be able to choose to stay signed in when logging in, <span class="white">so that</span> I wont have to type my password next time</li>
+							<li class="fragment"><span class="white">As an</span> API client, <span class="white">I will</span> be able to update my e-mail address</li>
+							<li class="fragment"><span class="white">Given</span> a dashboard user, <span class="white">When</span> he presses the clear filters button, <span class="white">Then</span> filters are reset</li>
+							<li class="fragment"><span class="white">Given</span> a dashboard user, <span class="white">When</span> he presses the clear filters button, <span class="white">Then</span> content is reloaded</li>
+							<li class="fragment"><span class="white">As a</span> library user, <span class="white">I will</span> be able to receive the list of files given a directory</li>
+							<li class="fragment"><span class="white">As a</span> library user, <span class="white">I will</span> get an exception when I provide a path which is not a folder</li>
+						</ul>
 					</section>
 				</section>
+				<section data-background="rgba(0, 100, 100, 0.2)">
+					<section>
+						<h2>Let's see some code examples...</h2>
+						<BR/>
+						<p>(press down....)</p>
+					</section>
+					<section>
+						<h2>Sorting Algorithm</h2>
+						<div class="javascript">
+							<pre>
+								<code>
+//===  Sorter.js
+var MergeSort = require("MergeSort");
+
+var Sorter = {
+	"sort" : function(inArray){
+		return MergeSort.sort(inArray);
+	}
+}
+
+//=== SorterSpec.js
+var Sorter = require("Sorter")
+
+// As a code user, I will have a generic Sorting API
+describe("Sorting"){
+	it("simply returns a sorted array"){
+		var provided = [1,2,3,4,5];
+		expect( Sorter.sort(provided) ).toEqual( provided )
+		// replace QuickSort
+	}
+
+	it("sorts a reverse unsorted array"){
+		expect(Sorter.sort([5,4,3,2,1])).toEqual([1,2,3,4,5])
+	}
+}
+								</code>
+							</pre>
+						</div>
+					</section>
+					<section>
+						<h2>Sorting Algorithm 2</h2>
+						<p>Just in - we need a space conserving algorithm!</p>
+						<p>We will be using the QuickSort algorithm instead</p>
+						<div class="javascript section">
+							<pre>
+								<code>
+//===  Sorter.js
+var QuickSort = require("QuickSort");
+
+var Sorter = {
+	"sort" : function(inArray){
+		return MergeSort.sort(inArray);
+	}
+}
+
+//=== SorterSpec.js
+var Sorter = require("Sorter")
+
+// As a code user, I will have a generic Sorting API
+describe("Sorting"){
+	it("simply returns a sorted array"){
+		var provided = [1,2,3,4,5];
+		expect( Sorter.sort(provided) ).toEqual( provided )
+		// replace QuickSort
+	}
+
+	it("sorts a reverse unsorted array"){
+		expect(Sorter.sort([5,4,3,2,1])).toEqual([1,2,3,4,5])
+	}
+}
+								</code>
+							</pre>
+						</div>
+					</section>
+					<section>
+						<h2>Example From Real Life</h2>
+						<a href="https://github.com/romansky/JsCron">CoffeeScript project</a><BR/>
+						<a href="https://github.com/romansky/cron-scala-parser">Scala project</a><BR/>
+						<a href="https://travis-ci.org/romansky/cron-scala-parser/builds/9027277">Travis failed output</a>
+
+					</section>
+				</section>
+
 				<section data-background="rgba(0, 100, 100, 0.2)">
 					<h2>Other Useful Tools</h2>
 					<ul>
 						<li class="fragment">Mocking</li>
-						<li class="fragment">Dependecy Injection</li>
+						<li class="fragment">Dependency Injection</li>
 					</ul>
 				</section>
 				<section>
-					<h2>Dont Give Up On Design!</h2>
+					<h2>Other resources</h2>
 					<br/>
-					<p>Wireframes</p>
-					<p>System Architecture</p>
-					<p>Deployment</p>
-					<p>APIs</p>
+					<a href="http://www.threeriversinstitute.org/blog/">Kent Beck's blog</a>
+					<a href="http://www.agiledata.org/essays/tdd.html">Nice overview of TDD</p>
+					<a href="http://www.amazon.com/Test-Driven-Development-By-Example/dp/0321146530">Kent Beck's TDD book</a>
+					<a href="http://www.google.com">Google!</a>
 				</section>
-				<section><h1>HAPPY HACKING</h1></section>
+				<section>
+					<p>Have you starting writing BDD after my talk? Have more questions? let me know!</p>
+					<a href="mailto:roman.land@gmail.com">shoot me an e-mail</a><BR/>
+					<a href="romansky.github.io/bddtalk2013/">Grab the slides</a>
+					<BR/>
+					<h2>HAPPY HACKING</h2>
+
+				</section>
 			</div>
 
 		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		<script src="./lib/js/head.min.js"></script>
 		<script src="./js/reveal.min.js"></script>
@@ -165,6 +396,7 @@
 				//theme: 'serif', // default/neon
 
 			});
+			hljs.initHighlightingOnLoad();
 
 		</script>
 
